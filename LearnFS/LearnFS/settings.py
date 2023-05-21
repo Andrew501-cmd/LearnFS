@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'API_LearnFS.apps.ApiLearnfsConfig',
+    'CLIENT_LearnFS.apps.ClientLearnfsConfig',
+    'GAME_LearnFS.apps.GameLearnfsConfig',
 ]
 
 MIDDLEWARE = [
