@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Group(models.Model):
-    group = models.CharField(max_length=5)
+    group = models.CharField(max_length=5, verbose_name="Класс")
     
     class Meta:
         verbose_name = 'Класс'
@@ -14,7 +14,7 @@ class Group(models.Model):
         return self.name
     
 class Subject(models.Model):
-    name = models.CharField(max_length=35)
+    name = models.CharField(max_length=35, verbose_name="Предмет")
     groups = models.ManyToManyField(Group)
     
     class Meta:
@@ -26,9 +26,9 @@ class Subject(models.Model):
         return self.name
     
 class Theme(models.Model):
-    title = models.CharField(max_length=50)
-    description = models.CharField(max_length=255)
-    subs_clases = models.ForeignKey('Subject', on_delete=models.PROTECT)
+    title = models.CharField(max_length=50, verbose_name="Загаловок/название")
+    description = models.CharField(max_length=255, verbose_name="Описание")
+    subs_clases = models.ForeignKey('Subject', on_delete=models.PROTECT, verbose_name="Предмет")
     
     class Meta:
         verbose_name = 'Тема'
@@ -39,8 +39,8 @@ class Theme(models.Model):
         return self.name
     
 class Summary(models.Model):
-    body = models.TextField()
-    themes = models.ForeignKey("Theme",on_delete=models.PROTECT)
+    body = models.TextField(verbose_name="Конспект")
+    themes = models.ForeignKey("Theme",on_delete=models.PROTECT, verbose_name="Тема")
     
     class Meta:
         verbose_name = 'Конспект'
@@ -51,9 +51,9 @@ class Summary(models.Model):
         return self.name
 
 class Test(models.Model):
-    title = models.CharField(max_length=50)
-    description = models.CharField(max_length=255)
-    themes = models.ForeignKey("Theme",on_delete=models.PROTECT)
+    title = models.CharField(max_length=50, verbose_name="Название")
+    description = models.CharField(max_length=255, verbose_name="Описание")
+    themes = models.ForeignKey("Theme",on_delete=models.PROTECT, verbose_name="Тема")
     
     class Meta:
         verbose_name = 'Тест'
@@ -64,8 +64,8 @@ class Test(models.Model):
         return self.name
     
 class Question(models.Model):
-    text = models.TextField()
-    tests = models.ForeignKey("Test",on_delete=models.PROTECT)
+    text = models.TextField(verbose_name="Вопрос")
+    tests = models.ForeignKey("Test",on_delete=models.PROTECT, verbose_name="Тест")
     
     class Meta:
         verbose_name = 'Вопрос'
@@ -76,8 +76,8 @@ class Question(models.Model):
         return self.name
     
 class Ans_Que(models.Model):
-    answer = models.CharField(max_length=255)
-    isRight = models.BooleanField(default=False)
+    answer = models.CharField(max_length=255, verbose_name="Ответ")
+    isRight = models.BooleanField(default=False, verbose_name="Правильность")
     
     class Meta:
         verbose_name = 'Ответ на вопрос'
