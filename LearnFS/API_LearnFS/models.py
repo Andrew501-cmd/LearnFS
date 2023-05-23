@@ -8,7 +8,8 @@ class Group(models.Model):
     class Meta:
         verbose_name = 'Класс'
         verbose_name_plural = 'Классы'
-    
+        db_table_comment = "Таблица с классами"
+        
     def __str__(self):           
         return self.name
     
@@ -19,7 +20,8 @@ class Subject(models.Model):
     class Meta:
         verbose_name = 'Предмет'
         verbose_name_plural = 'Предметы'
-    
+        db_table_comment = "Таблица с предметами"
+        
     def __str__(self):          
         return self.name
     
@@ -31,7 +33,8 @@ class Theme(models.Model):
     class Meta:
         verbose_name = 'Тема'
         verbose_name_plural = 'Темы'
-    
+        db_table_comment = "Таблица с темами"
+        
     def __str__(self):          
         return self.name
     
@@ -42,7 +45,8 @@ class Summary(models.Model):
     class Meta:
         verbose_name = 'Конспект'
         verbose_name_plural = 'Конспекты'
-    
+        db_table_comment = "Таблица с ответами конспектами по какой-либо теме"
+        
     def __str__(self):
         return self.name
 
@@ -54,7 +58,8 @@ class Test(models.Model):
     class Meta:
         verbose_name = 'Тест'
         verbose_name_plural = 'Тесты'
-    
+        db_table_comment = "Таблица с тестами по какой-либо теме"
+        
     def __str__(self):
         return self.name
     
@@ -65,7 +70,8 @@ class Question(models.Model):
     class Meta:
         verbose_name = 'Вопрос'
         verbose_name_plural = 'Вопросы'
-    
+        db_table_comment = "Таблица с вопросами"
+        
     def __str__(self):
         return self.name
     
@@ -76,6 +82,7 @@ class Ans_Que(models.Model):
     class Meta:
         verbose_name = 'Ответ на вопрос'
         verbose_name_plural = 'Ответы на вопросы'
+        db_table_comment = "Таблица с ответами на вопросы"
     
     def __str__(self):
         return self.name
