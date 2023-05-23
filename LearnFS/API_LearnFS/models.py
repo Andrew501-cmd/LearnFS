@@ -78,6 +78,7 @@ class Question(models.Model):
 class Ans_Que(models.Model):
     answer = models.CharField(max_length=255, verbose_name="Ответ")
     isRight = models.BooleanField(default=False, verbose_name="Правильность")
+    questions = models.ForeignKey("Question",on_delete=models.PROTECT, verbose_name="Вопрос")
     
     class Meta:
         verbose_name = 'Ответ на вопрос'
