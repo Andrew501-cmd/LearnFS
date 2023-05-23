@@ -11,7 +11,7 @@ class Group(models.Model):
         db_table_comment = "Таблица с классами"
         
     def __str__(self):           
-        return self.name
+        return self.group
     
 class Subject(models.Model):
     name = models.CharField(max_length=35, verbose_name="Предмет")
@@ -36,7 +36,7 @@ class Theme(models.Model):
         db_table_comment = "Таблица с темами"
         
     def __str__(self):          
-        return self.name
+        return self.title
     
 class Summary(models.Model):
     body = models.TextField(verbose_name="Конспект")
@@ -48,7 +48,7 @@ class Summary(models.Model):
         db_table_comment = "Таблица с ответами конспектами по какой-либо теме"
         
     def __str__(self):
-        return self.name
+        return self.body
 
 class Test(models.Model):
     title = models.CharField(max_length=50, verbose_name="Название")
@@ -61,7 +61,7 @@ class Test(models.Model):
         db_table_comment = "Таблица с тестами по какой-либо теме"
         
     def __str__(self):
-        return self.name
+        return self.title
     
 class Question(models.Model):
     text = models.TextField(verbose_name="Вопрос")
@@ -73,7 +73,7 @@ class Question(models.Model):
         db_table_comment = "Таблица с вопросами"
         
     def __str__(self):
-        return self.name
+        return self.text
     
 class Ans_Que(models.Model):
     answer = models.CharField(max_length=255, verbose_name="Ответ")
@@ -86,4 +86,4 @@ class Ans_Que(models.Model):
         db_table_comment = "Таблица с ответами на вопросы"
     
     def __str__(self):
-        return self.name
+        return self.answer
