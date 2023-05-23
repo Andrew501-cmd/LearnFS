@@ -15,7 +15,7 @@ class Group(models.Model):
     
 class Subject(models.Model):
     name = models.CharField(max_length=35, verbose_name="Предмет")
-    groups = models.ManyToManyField(Group)
+    groups = models.ManyToManyField(Group, verbose_name="Класс")
     
     class Meta:
         verbose_name = 'Предмет'
