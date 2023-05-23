@@ -2,3 +2,6 @@ LearnFS/API_LearnFS/__pycache__/
 LearnFS/CLIENT_LearnFS/__pycache__/
 LearnFS/GAME_LearnFS/__pycache__/
 LearnFS/LearnFS/__pycache__/
+LearnFS/API_LearnFS/migrations/__pycache__/
+LearnFS/CLIENT_LearnFS/migrations/__pycache__/
+LearnFS/GAME_LearnFS/migrations/__pycache__/
