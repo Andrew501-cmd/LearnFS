@@ -3,87 +3,62 @@ from django.db import models
 # Create your models here.
 
 class Group(models.Model):
-    group = models.CharField(max_length=5, verbose_name="Класс")
+    group = models.CharField(max_length=4, verbose_name="Класс")
+    
+    def __str__(self):
+        return self.group
     
     class Meta:
         verbose_name = 'Класс'
         verbose_name_plural = 'Классы'
-        db_table_comment = "Таблица с классами"
         
-    def __str__(self):           
-        return self.group
-    
 class Subject(models.Model):
-    name = models.CharField(max_length=35, verbose_name="Предмет")
-    groups = models.ManyToManyField(Group, verbose_name="Класс")
+    subject = models.CharField(max_length=20, verbose_name="Предмет")
+    
+    def __str__(self):
+        return self.subject
     
     class Meta:
         verbose_name = 'Предмет'
         verbose_name_plural = 'Предметы'
-        db_table_comment = "Таблица с предметами"
         
-    def __str__(self):          
-        return self.name
+class Article(models.Model):
+    group = models.ForeignKey("Group", verbose_name="Класс", on_delete=models.PROTECT)
+    subject = models.ForeignKey("Subject", verbose_name="Предмет", on_delete=models.PROTECT)
+    title = models.CharField(max_length=127, verbose_name="Заголовок")
+    summary = models.TextField(max_length=500, verbose_name="Описание")
+    html = models.TextField(verbose_name="HTML")
+    num_questions = models.CharField(verbose_name="Количество вопросов в тесте", max_length=2)
+    #TODO добавить подержку фото в статье
+    time_create = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
+    time_edit = models.DateTimeField(verbose_name="Дата изменения", auto_now=True)
     
-class Theme(models.Model):
-    title = models.CharField(max_length=50, verbose_name="Загаловок/название")
-    description = models.CharField(max_length=255, verbose_name="Описание")
-    subs_clases = models.ForeignKey('Subject', on_delete=models.PROTECT, verbose_name="Предмет")
-    
-    class Meta:
-        verbose_name = 'Тема'
-        verbose_name_plural = 'Темы'
-        db_table_comment = "Таблица с темами"
-        
-    def __str__(self):          
+    def __str__(self):
         return self.title
     
-class Summary(models.Model):
-    body = models.TextField(verbose_name="Конспект")
-    themes = models.ForeignKey("Theme",on_delete=models.PROTECT, verbose_name="Тема")
-    
     class Meta:
-        verbose_name = 'Конспект'
-        verbose_name_plural = 'Конспекты'
-        db_table_comment = "Таблица с ответами конспектами по какой-либо теме"
-        
-    def __str__(self):
-        return self.body
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'
 
-class Test(models.Model):
-    title = models.CharField(max_length=50, verbose_name="Название")
-    description = models.CharField(max_length=255, verbose_name="Описание")
-    themes = models.ForeignKey("Theme",on_delete=models.PROTECT, verbose_name="Тема")
+class Questions(models.Model):
+    article = models.ForeignKey("Article", verbose_name="Статья", on_delete=models.PROTECT)
+    body = models.TextField(verbose_name="Вопрос")
     
-    class Meta:
-        verbose_name = 'Тест'
-        verbose_name_plural = 'Тесты'
-        db_table_comment = "Таблица с тестами по какой-либо теме"
-        
     def __str__(self):
-        return self.title
-    
-class Question(models.Model):
-    text = models.TextField(verbose_name="Вопрос")
-    tests = models.ForeignKey("Test",on_delete=models.PROTECT, verbose_name="Тест")
+        return str(self.body)
     
     class Meta:
         verbose_name = 'Вопрос'
         verbose_name_plural = 'Вопросы'
-        db_table_comment = "Таблица с вопросами"
         
-    def __str__(self):
-        return self.text
+class Answer(models.Model):
+    questions = models.ForeignKey("Questions", verbose_name="Вопрос", on_delete=models.PROTECT)
+    body = models.TextField(verbose_name="Вариант ответа")
+    isRight = models.BooleanField(verbose_name="Правильность")
     
-class Ans_Que(models.Model):
-    answer = models.CharField(max_length=255, verbose_name="Ответ")
-    isRight = models.BooleanField(default=False, verbose_name="Правильность")
-    questions = models.ForeignKey("Question",on_delete=models.PROTECT, verbose_name="Вопрос")
+    def __str__(self):
+        return str(self.body)
     
     class Meta:
         verbose_name = 'Ответ на вопрос'
         verbose_name_plural = 'Ответы на вопросы'
-        db_table_comment = "Таблица с ответами на вопросы"
-    
-    def __str__(self):
-        return self.answer
