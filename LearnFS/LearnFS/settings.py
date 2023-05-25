@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'CLIENT_LearnFS.apps.ClientLearnfsConfig',
     'GAME_LearnFS.apps.GameLearnfsConfig',
     'django_hosts',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+
     'django_hosts.middleware.HostsResponseMiddleware'
 ]
 
