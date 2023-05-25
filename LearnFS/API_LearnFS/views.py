@@ -5,3 +5,6 @@ from django.shortcuts import render
 
 def documentation(request):
     return HttpResponse('v1/allList</br>')
+
+class V1_allList():
+    pass
