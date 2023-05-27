@@ -1,4 +1,5 @@
 from django.db import models
+from django_ckeditor_5.fields import CKEditor5Field
 
 # Create your models here.
 
@@ -27,7 +28,7 @@ class Article(models.Model):
     subject = models.ForeignKey("Subject", verbose_name="Предмет", on_delete=models.PROTECT)
     title = models.CharField(max_length=127, verbose_name="Заголовок")
     summary = models.TextField(max_length=500, verbose_name="Описание")
-    html = models.TextField(verbose_name="HTML")
+    html = CKEditor5Field(verbose_name="HTML", config_name='extends')
     num_questions = models.CharField(verbose_name="Количество вопросов в тесте", max_length=2)
     #TODO добавить подержку фото в статье
     time_create = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
