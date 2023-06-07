@@ -35,7 +35,7 @@ class Article(models.Model):
     time_edit = models.DateTimeField(verbose_name="Дата изменения", auto_now=True)
     
     def __str__(self):
-        return self.title
+        return str(self.subject)
     
     class Meta:
         verbose_name = 'Статья'

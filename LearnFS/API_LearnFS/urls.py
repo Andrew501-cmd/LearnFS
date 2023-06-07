@@ -8,7 +8,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', api_views.documentation),
-    path('v1/allList', V1_allList),
+    path('v1/allList', api_views.V1_allList.as_view()),
     path('ckeditor5/', include('django_ckeditor_5.urls')),
 ]
 
