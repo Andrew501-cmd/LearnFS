@@ -4,8 +4,8 @@ from .models import *
 # Register your models here.
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ["id", "group", "title", "summary", "html", "num_questions", "time_create", "time_edit"]
-    list_display_links = ["id", "group", "title", "summary", "html", "num_questions", "time_create", "time_edit"]
+    list_display = ["id","group", "subject", "title", "summary", "html", "num_questions", "time_create", "time_edit"]
+    list_display_links = ["id", "group", "subject", "title", "summary", "html", "num_questions", "time_create", "time_edit"]
 
 class GroupAdmin(admin.ModelAdmin):
     list_display = ["id", "group"]
