@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', api_views.documentation),
     path('v1/allList', api_views.V1_allList.as_view()),
+    path('v2/allList', api_views.V2_allList.as_view()),
     path('ckeditor5/', include('django_ckeditor_5.urls')),
 ]
 

@@ -50,4 +50,27 @@ class V1_allList(APIView):
                            "subject": {"quantity": quantity_subjects, "body_groups": body_subjects},
                            "ListGroupAndSubject": ListGroupAndSubject}
         return Response(infoGnS())
-            
+        
+class V2_allList(APIView):
+    def get(self, request): 
+        def infoGnS(): #Возвращает информацию о классах и придметах
+            body_groups = []
+            body_subjects = [] 
+            ListGroupAndSubject = []
+            for i in range(len(Article.objects.all())):
+                pk = i + 1
+                group = str(Article.objects.get(pk=pk).group)
+                subject = str(Article.objects.get(pk=pk).subject)
+                GnS = group + " " + subject
+                if GnS not in ListGroupAndSubject:
+                    ListGroupAndSubject.append(GnS)
+                if group not in body_groups:
+                    body_groups.append(group)
+                if subject not in body_subjects:
+                    body_subjects.append(subject)
+            quantity_groups = len(body_groups)
+            quantity_subjects = len(body_subjects)
+            return {'group': {"quantity": quantity_groups, "body_groups": body_groups},
+                           "subject": {"quantity": quantity_subjects, "body_groups": body_subjects},
+                           "ListGroupAndSubject": ListGroupAndSubject}
+        return Response(infoGnS())
