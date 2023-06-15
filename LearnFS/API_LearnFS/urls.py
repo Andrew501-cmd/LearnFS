@@ -10,8 +10,8 @@ urlpatterns = [
     path('', api_views.documentation),
     path('v1/allList', api_views.V1_allList.as_view()),
     path('v2/allList', api_views.V2_allList.as_view()),
-    path('v1/getArticle', ...),
-    path('v1/searchArticle', ...),
+    path('v1/getArticle', getArticle.as_view()),
+    path('v1/searchArticle', searchArticle.as_view()),
     path('ckeditor5/', include('django_ckeditor_5.urls')),
 ]
 
